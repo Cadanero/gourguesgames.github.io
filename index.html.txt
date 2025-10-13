@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>GG Interactive</title>
+</head>
+<body style="font-family: Arial; background: #0d1117; color: white; text-align: center; padding-top: 50px;">
+  <h1>Welcome to GG Interactive</h1>
+  <p>Site is alive! 🎮</p>
+</body>
+</html>
