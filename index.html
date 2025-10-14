@@ -1,11 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>GG Interactive</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GG Interactive</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 </head>
-<body style="font-family: Arial; background: #0d1117; color: white; text-align: center; padding-top: 50px;">
-  <h1>Welcome to GG Interactive</h1>
-  <p>Site is alive! 🎮</p>
+<body>
+    <!-- 🔝 Top Navigation Bar -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="content/GGLogo1.png" alt="GG Logo">
+            <span>Interactive</span>
+        </div>
+        <nav class="menu">
+            <a href="#">Home</a>
+            <a href="#projects">Projects</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- 🧱 Main Content -->
+    <main>
+        <section id="home" class="hero">
+            <h1>GG Interactive</h1>
+            <p>Solo developer creating bold and immersive gaming experiences 🎮</p>
+            <a href="#projects" class="btn">See My Work</a>
+        </section>
+
+        <section id="projects" class="projects">
+            <h2>Featured Project</h2>
+            <div class="project">
+                <img src="content/roundz_banner.jpg" alt="RoundZ Screenshot">
+                <div class="project-info">
+                    <h3>RoundZ</h3>
+                    <p>A chaotic round-based zombie survival set in the mountains of Spain. Built with Unreal Engine, featuring co-op mode, perk systems, and easter eggs galore.</p>
+                    <a href="https://store.steampowered.com/app/3282690/RoundZ/" target="_blank" class="btn">View on Steam</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <h2>About Me</h2>
+            <p>
+                Hey, I’m Hugo Gourgues — the solo developer behind GG Interactive.
+                I build games that blend storytelling, chaos, and creativity.
+                From one-man prototypes to full releases like <strong>RoundZ</strong>, every project is made with passion (and way too much caffeine).
+            </p>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2>Contact</h2>
+            <p>
+                Interested in collaborating or covering my games?
+                Reach out below or follow me on social media:
+            </p>
+            <div class="socials">
+                <a href="mailto:ggamesinteractive@gmail.com">📧 Email</a>
+                <a href="https://twitter.com/" target="_blank">🐦 Twitter</a>
+                <a href="https://store.steampowered.com/developer/GGInteractive" target="_blank">🕹 Steam Page</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 GG Interactive. All rights reserved.</p>
+        </footer>
+
+    </main>
 </body>
 </html>
