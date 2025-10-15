@@ -348,14 +348,14 @@ a {
 /* --- Responsive Tweaks --- */
 @media (max-width: 768px) {
     .hero {
-        min-height: 100dvh; /* dynamic viewport height (fixes mobile UI cutoff) */
-        padding-top: 60px; /* remove that excessive margin */
+        min-height: 100dvh; /* actual visible mobile height */
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         text-align: center;
-        overflow: hidden;
+        padding: 80px 20px 40px; /* controlled spacing top/bottom */
+        overflow: visible; /* allow breathing room for long text */
     }
 
     .hero-logo {
@@ -366,20 +366,27 @@ a {
 
     .hero h1 {
         font-size: 1.6rem;
-        margin-bottom: 0.6rem;
         line-height: 1.2;
+        margin-bottom: 0.8rem;
     }
 
     .hero .subtitle {
         font-size: 1rem;
         font-style: italic;
         opacity: 0.9;
-        margin: 0 auto;
+        color: #ccc;
+        margin: 0.3rem 0 0.8rem;
         max-width: 90%;
     }
 
     .hero .vision {
-        display: none; /* optional: hide to keep layout tight */
+        font-size: 0.95rem;
+        color: #aaa;
+        line-height: 1.5;
+        margin-top: 0.5rem;
+        padding: 0 10px;
+        max-width: 95%;
+        opacity: 0.85;
     }
 }
 
