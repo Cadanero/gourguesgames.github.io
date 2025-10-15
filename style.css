@@ -197,7 +197,7 @@ a {
 
 /* --- Logo Glow --- */
 .hero-logo {
-    width: clamp(115px, 22vw, 305px);
+    width: clamp(130px, 28vw, 320px);
     height: auto;
     opacity: 0;
     filter: drop-shadow(0 0 0 #FF6700);
@@ -348,31 +348,38 @@ a {
 /* --- Responsive Tweaks --- */
 @media (max-width: 768px) {
     .hero {
-        padding: 100px 20px 60px; /* tighter spacing for smaller screens */
+        min-height: 100dvh; /* dynamic viewport height (fixes mobile UI cutoff) */
+        padding-top: 60px; /* remove that excessive margin */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        overflow: hidden;
     }
 
     .hero-logo {
-        width: 150px;
-        max-width: 40vw;
-        margin-bottom: 1.2rem;
+        width: 120px;
+        max-width: 35vw;
+        margin-bottom: 1rem;
     }
 
     .hero h1 {
-        font-size: 1.8rem; /* smaller title for mobile */
+        font-size: 1.6rem;
+        margin-bottom: 0.6rem;
         line-height: 1.2;
-        text-align: center;
     }
 
     .hero .subtitle {
         font-size: 1rem;
         font-style: italic;
-        color: #ccc;
-        text-align: center;
-        margin-top: 0.6rem;
+        opacity: 0.9;
+        margin: 0 auto;
+        max-width: 90%;
     }
 
     .hero .vision {
-        display: none; /* optional: hide second paragraph on mobile for simplicity */
+        display: none; /* optional: hide to keep layout tight */
     }
 }
 
