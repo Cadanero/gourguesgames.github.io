@@ -39,103 +39,322 @@ a {
    NAVIGATION BAR
 ========================= */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #0d0d0d;
-    padding: 8px 48px;
-    border-bottom: 1px solid #1b1b1b;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0d0d0d;
+  padding: 8px 20px;
+  border-bottom: 1px solid #1b1b1b;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
-
+.navbar,
+.navbar * {
+        font-size: 0.95rem !important;
+        font-weight: 500 !important;
+        letter-spacing: 0 !important;
+        text-transform: none;
+    }
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-    .logo img {
-        height: 46px;
-        width: auto;
-        object-fit: contain;
-        filter: drop-shadow(0 0 4px rgba(255, 95, 31, 0.5));
-        transform: translateY(1px);
-    }
+.logo img {
+  height: 42px; /* slightly smaller for balance */
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 4px rgba(255, 95, 31, 0.4));
+}
 
-    .logo span {
-        font-weight: 600;
-        color: #959595;
-        font-size: 1.1rem;
-        letter-spacing: 0.4px;
-    }
+.logo span {
+  font-weight: 600;
+  color: #b5b5b5;
+  letter-spacing: 0.4px;
+  font-size: 1rem; /* reverted to cleaner size */
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+}
 
+/* Menu links */
 .menu a {
-    color: #d6d6d6;
-    font-weight: 500;
-    font-size: 0.98rem;
-    margin-left: 28px;
-    transition: color 0.2s ease;
+  color: #d6d6d6;
+  margin: 0 0 0 24px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem; /* fixed back to compact */
+  transition: color 0.2s ease;
+  padding: 6px 0;
+  position: relative;
 }
 
-    .menu a:hover {
-        color: #FF6700;
-    }
+/* subtle underline hover effect */
+.menu a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #ff6700;
+  transition: width 0.25s ease-in-out;
+}
 
-/* Mobile nav */
+.menu a:hover {
+  color: #ff6700;
+}
+.menu a:hover::after {
+  width: 100%;
+}
+
+/* Highlight first link ("Home") */
+.menu a:first-child {
+  color: #ff6700;
+  font-weight: 600;
+}
+.menu a:first-child::after {
+  width: 100%;
+  background: #ff6700;
+}
+
+/* --- Responsive --- */
 @media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        gap: 10px;
-        padding: 12px 24px;
-    }
-
-    .logo img {
-        height: 38px;
-    }
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px 24px;
+  }
+  .logo img {
+    height: 36px;
+  }
 }
 
 /* =========================
    HERO SECTION
 ========================= */
+
+/* ===== HERO – Refined Cinematic Version ===== */
+
 .hero {
+    position: relative;
     width: 100vw;
-    min-height: 100vh; /* full screen */
+    height: 100vh;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 0 20px;
+    background: radial-gradient(circle at 30% 40%, #121212 0%, #0b0b0b 70%, #080808 100%);
+    z-index: 0; /* prevents it from covering navbar */
 }
 
-    .hero h1 {
-        font-size: 3rem;
-        color: #FF6700;
-        margin-bottom: 1rem;
+    /* --- Subtle ambient orange light --- */
+    .hero::before {
+        content: "";
+        position: absolute;
+        inset: -30%;
+        background: radial-gradient(circle at 50% 40%, rgba(255, 103, 0, 0.15), transparent 60%);
+        animation: ambientGlow 10s ease-in-out infinite alternate;
+        z-index: 0;
+        filter: blur(80px);
     }
 
-    .hero p {
-        color: #aaa;
-        font-size: 1.25rem;
-        margin-bottom: 1.5rem;
+@keyframes ambientGlow {
+    0% {
+        transform: translate(-5%, -5%) scale(1);
+        opacity: 0.6;
     }
 
-    .hero .btn {
-        background: #959595;
-        color: #fff;
-        padding: 12px 28px;
-        border-radius: 8px;
-        font-weight: 600;
-        transition: background 0.25s ease, transform 0.2s ease;
+    50% {
+        transform: translate(5%, 5%) scale(1.1);
+        opacity: 0.9;
     }
 
-        .hero .btn:hover {
-            background: #FF6700;
-            transform: translateY(-2px);
-        }
+    100% {
+        transform: translate(-5%, -5%) scale(1);
+        opacity: 0.6;
+    }
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.85));
+    z-index: 1;
+}
+
+/* --- Main Content --- */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 24px;
+    max-width: 900px;
+    transform: translateY(-4vh);
+}
+
+/* --- Logo Glow --- */
+.hero-logo {
+    width: clamp(130px, 28vw, 320px);
+    height: auto;
+    opacity: 0;
+    filter: drop-shadow(0 0 0 #FF6700);
+    margin-bottom: 0.5rem;
+    animation: powerOn 1.6s ease-out forwards, glowBreathe 8s ease-in-out infinite 1.6s;
+}
+
+@keyframes powerOn {
+    0% {
+        opacity: 0;
+        transform: scale(0.96);
+        filter: drop-shadow(0 0 0 rgba(255,103,0,0));
+    }
+
+    25% {
+        opacity: 0.9;
+        transform: scale(1.02);
+        filter: drop-shadow(0 0 22px rgba(255,103,0,0.75));
+    }
+
+    32% {
+        opacity: 0.5;
+        filter: drop-shadow(0 0 6px rgba(255,103,0,0.35));
+    }
+
+    40% {
+        opacity: 1;
+        filter: drop-shadow(0 0 26px rgba(255,103,0,0.9));
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1.0);
+        filter: drop-shadow(0 0 14px rgba(255,103,0,0.55));
+    }
+}
+
+@keyframes glowBreathe {
+    0%,100% {
+        filter: drop-shadow(0 0 12px rgba(255,103,0,0.45));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 22px rgba(255,103,0,0.75));
+    }
+}
+
+/* --- Title & Subtitle --- */
+.hero h1 {
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    color: #FF6700;
+    text-shadow: 0 0 14px rgba(255,103,0,0.35);
+    opacity: 0;
+    transform: translateY(10px);
+    animation: riseIn 0.9s ease-out forwards;
+    animation-delay: 0.25s;
+}
+
+.subtitle {
+    color: #cfcfcf;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    opacity: 0;
+    transform: translateY(10px);
+    animation: riseIn 0.9s ease-out forwards;
+    animation-delay: 0.55s;
+}
+
+.vision {
+    color: #9d9d9d;
+    font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+    max-width: 720px;
+    margin: 0.8rem auto 0;
+    opacity: 0;
+    transform: translateY(8px);
+    animation: riseIn 0.9s ease-out forwards;
+    animation-delay: 0.9s;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+@keyframes riseIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Scroll Cue --- */
+.scroll-cue {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 40px;
+    border: 2px solid rgba(255, 103, 0, 0.7);
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 6px;
+    opacity: 0;
+    animation: fadeOnly 1s ease-out forwards;
+    animation-delay: 1.6s;
+    z-index: 2;
+}
+
+    .scroll-cue span {
+        width: 6px;
+        height: 6px;
+        background: #FF6700;
+        border-radius: 50%;
+        animation: scrollPulse 2s infinite;
+    }
+
+@keyframes scrollPulse {
+    0%, 20% {
+        opacity: 0;
+        transform: translateY(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(14px);
+    }
+
+    80%,100% {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+}
+
+@keyframes fadeOnly {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* --- Responsive Tweaks --- */
+@media (max-width: 768px) {
+    .hero-content {
+        transform: translateY(-2vh);
+    }
+
+    .hero-logo {
+        width: clamp(110px, 36vw, 260px);
+    }
+}
+
 
 /* =========================
    PROJECTS SECTION
