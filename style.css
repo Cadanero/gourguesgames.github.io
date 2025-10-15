@@ -18,7 +18,9 @@ body {
     line-height: 1.6;
     overflow-x: hidden; /* prevent horizontal scrollbars */
 }
-
+html {
+    scroll-behavior: smooth;
+}
 h1, h2, h3 {
     color: #FF6700;
     letter-spacing: 0.5px;
@@ -48,6 +50,7 @@ a {
   position: sticky;
   top: 0;
   z-index: 1000;
+
 }
 .navbar,
 .navbar * {
@@ -79,43 +82,47 @@ a {
 
 /* Menu links */
 .menu a {
-  color: #d6d6d6;
-  margin: 0 0 0 24px;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.95rem; /* fixed back to compact */
-  transition: color 0.2s ease;
-  padding: 6px 0;
-  position: relative;
+    color: #d6d6d6;
+    margin: 0 0 0 24px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.25s ease;
+    padding: 6px 0;
+    position: relative;
 }
 
-/* subtle underline hover effect */
-.menu a::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background: #ff6700;
-  transition: width 0.25s ease-in-out;
-}
+    /* underline base */
+    .menu a::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #ff6700;
+        transition: none;
+    }
 
-.menu a:hover {
-  color: #ff6700;
-}
-.menu a:hover::after {
-  width: 100%;
-}
+    /* hover: only color (no underline) */
+    .menu a:hover {
+        color: #ff6700;
+    }
 
-/* Highlight first link ("Home") */
-.menu a:first-child {
-  color: #ff6700;
-  font-weight: 600;
-}
-.menu a:first-child::after {
-  width: 100%;
-  background: #ff6700;
+    /* active link: orange text + underline */
+    .menu a.active {
+        color: #ff6700;
+        font-weight: 600;
+    }
+
+        .menu a.active::after {
+            width: 100%;
+            transition: none;
+        }
+
+/* ✨ fix: when hovering another link, the active one goes gray temporarily */
+.menu:hover a.active:not(:hover) {
+    color: #d6d6d6;
 }
 
 /* --- Responsive --- */

@@ -15,7 +15,7 @@
             <span>Interactive</span>
         </div>
         <nav class="menu">
-            <a href="#">Home</a>
+            <a href="#home" class="active">Home</a>
             <a href="#projects">Projects</a>
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
@@ -82,5 +82,51 @@
         </footer>
 
     </main>
+
+    <script>
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll(".menu a");
+
+        // instant highlight on click (teleport underline)
+        navLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                navLinks.forEach(l => {
+                    l.classList.remove("active");
+                    l.style.transition = "none";
+                });
+                link.classList.add("active");
+                setTimeout(() => {
+                    navLinks.forEach(l => (l.style.transition = ""));
+                }, 50);
+            });
+        });
+
+        // live update on scroll (debounced)
+        let scrollTimeout;
+        window.addEventListener("scroll", () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                let current = "";
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 160;
+                    const sectionHeight = section.offsetHeight;
+                    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                        current = section.getAttribute("id");
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
+                });
+            }, 100);
+        });
+        // Force absolute top scroll for 'Home'
+        document.querySelector('a[href="#home"]').addEventListener("click", e => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    </script>
+
+
 </body>
 </html>
