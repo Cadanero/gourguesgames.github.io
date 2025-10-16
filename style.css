@@ -154,44 +154,65 @@ a {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: radial-gradient(circle at 30% 40%, #121212 0%, #0b0b0b 70%, #080808 100%);
-    z-index: 0; /* prevents it from covering navbar */
-}
+    background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)), /* dark overlay */
+    url("content/bg.png"); /* path to your image */
 
-    /* --- Subtle ambient orange light --- */
+    background-size: cover; /* fills the screen */
+    background-position: center; /* centers it */
+    background-repeat: no-repeat;
+    z-index: 0; /* keep behind text */
+}
+    /* === Quick orange point-light flare (ends at center) === */
     .hero::before {
         content: "";
         position: absolute;
-        inset: -30%;
-        background: radial-gradient(circle at 50% 40%, rgba(255, 103, 0, 0.15), transparent 60%);
-        animation: ambientGlow 10s ease-in-out infinite alternate;
-        z-index: 0;
-        filter: blur(80px);
-    }
-
-@keyframes ambientGlow {
-    0% {
-        transform: translate(-5%, -5%) scale(1);
-        opacity: 0.6;
-    }
-
-    50% {
-        transform: translate(5%, 5%) scale(1.1);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient( circle at 50% 50%, rgba(255, 200, 60, 1) 0%, rgba(255, 120, 0, 0.8) 8%, rgba(255, 80, 0, 0.35) 14%, transparent 25% );
+        filter: blur(15px);
+        mix-blend-mode: screen;
+        pointer-events: none;
+        z-index: 2;
         opacity: 0.9;
+        transform-origin: center;
+        animation: quickFlare 2.2s ease-out forwards;
+    }
+
+@keyframes quickFlare {
+    0% {
+        transform: translate(var(--start-x, 0px), var(--start-y, 0px)) scale(0.3);
+        opacity: 0.8;
+    }
+
+    80% {
+        transform: translate(var(--target-x, 0px), var(--target-y, 0px)) scale(0.7);
+        opacity: 1;
     }
 
     100% {
-        transform: translate(-5%, -5%) scale(1);
-        opacity: 0.6;
+        transform: translate(var(--target-x, 0px), var(--target-y, 0px)) scale(0.5);
+        opacity: 0;
     }
 }
 
+
+/* Dark overlay on top of moving light */
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.85));
-    z-index: 1;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8));
+    mix-blend-mode: multiply;
+    z-index: 2; /* 👈 ABOVE the light */
 }
+
+/* Text & logo layer */
+.hero-content {
+    position: relative;
+    z-index: 3;
+}
+
 
 /* --- Main Content --- */
 .hero-content {
@@ -202,53 +223,59 @@ a {
     transform: translateY(-10vh);
 }
 
-/* --- Logo Glow --- */
+/* --- Logo Glow (appears after light hits center) --- */
 .hero-logo {
     width: clamp(130px, 28vw, 320px);
     height: auto;
     opacity: 0;
+    transform: scale(0.9);
     filter: drop-shadow(0 0 0 #FF6700);
     margin-bottom: 0.5rem;
-    animation: powerOn 1.6s ease-out forwards, glowBreathe 8s ease-in-out infinite 1.6s;
+    /* start slightly before flare ends */
+    animation: powerOn 1.6s ease-out forwards 1.7s, glowBreathe 8s ease-in-out infinite 3.3s;
 }
 
+
+/* ⚡ "Power-on" flash */
 @keyframes powerOn {
     0% {
-        opacity: 0;
-        transform: scale(0.96);
-        filter: drop-shadow(0 0 0 rgba(255,103,0,0));
+        opacity: 0.4; /* visible from the first frame */
+        transform: scale(0.9);
+        filter: drop-shadow(0 0 5px rgba(255,103,0,0.3));
     }
 
-    25% {
-        opacity: 0.9;
-        transform: scale(1.02);
-        filter: drop-shadow(0 0 22px rgba(255,103,0,0.75));
+    20% {
+        opacity: 0.8;
+        transform: scale(1.03);
+        filter: drop-shadow(0 0 25px rgba(255,140,0,0.8));
     }
 
-    32% {
-        opacity: 0.5;
-        filter: drop-shadow(0 0 6px rgba(255,103,0,0.35));
-    }
-
-    40% {
+    50% {
         opacity: 1;
-        filter: drop-shadow(0 0 26px rgba(255,103,0,0.9));
+        transform: scale(1.00);
+        filter: drop-shadow(0 0 35px rgba(255,180,0,1));
+    }
+
+    70% {
+        filter: drop-shadow(0 0 20px rgba(255,120,0,0.7));
     }
 
     100% {
         opacity: 1;
-        transform: scale(1.0);
-        filter: drop-shadow(0 0 14px rgba(255,103,0,0.55));
+        filter: drop-shadow(0 0 14px rgba(255,103,0,0.5));
     }
 }
 
+
+
+/* 🔥 breathing halo after powering up */
 @keyframes glowBreathe {
     0%,100% {
-        filter: drop-shadow(0 0 12px rgba(255,103,0,0.45));
+        filter: drop-shadow(0 0 10px rgba(255,103,0,0.4));
     }
 
     50% {
-        filter: drop-shadow(0 0 22px rgba(255,103,0,0.75));
+        filter: drop-shadow(0 0 22px rgba(255,150,0,0.75));
     }
 }
 

@@ -127,6 +127,32 @@
         });
     </script>
 
+    <script>
+        const hero = document.querySelector('.hero');
+        const logo = document.querySelector('.hero-logo');
+
+        if (hero && logo) {
+            const heroRect = hero.getBoundingClientRect();
+            const logoRect = logo.getBoundingClientRect();
+
+            // 🎯 logo center relative to hero
+            const targetX =
+                logoRect.left + logoRect.width / 2 - (heroRect.left + heroRect.width / 2);
+            const targetY =
+                logoRect.top + logoRect.height / 2 - (heroRect.top + heroRect.height / 2);
+
+            // 🎲 random start from hero border
+            const angle = Math.random() * Math.PI * 2;
+            const radius = Math.max(heroRect.width, heroRect.height) * 0.6; // just outside edges
+            const startX = Math.cos(angle) * radius;
+            const startY = Math.sin(angle) * radius;
+
+            hero.style.setProperty("--start-x", `${startX}px`);
+            hero.style.setProperty("--start-y", `${startY}px`);
+            hero.style.setProperty("--target-x", `${targetX}px`);
+            hero.style.setProperty("--target-y", `${targetY}px`);
+        }
+    </script>
 
 </body>
 </html>
