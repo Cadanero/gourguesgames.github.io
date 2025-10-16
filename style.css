@@ -154,16 +154,23 @@ a {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)), /* dark overlay */
-    url("content/bg.png"); /* path to your image */
-
-    background-size: cover; /* fills the screen */
-    background-position: center; /* centers it */
-    background-repeat: no-repeat;
     z-index: 0; /* keep behind text */
 }
-    /* === Quick orange point-light flare (ends at center) === */
+
+    /* 🎞️ Background animation layer */
     .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("content/bg.png") no-repeat center center;
+        background-size: cover;
+        animation: bgDrift 12s ease-in-out infinite, bgZoom 15s ease-in-out infinite alternate;
+        z-index: -1; /* stays behind content */
+        transform-origin: center;
+    }
+
+    /* === Quick orange point-light flare (ends at center) === */
+    .hero::after {
         content: "";
         position: absolute;
         top: 0;
@@ -179,6 +186,39 @@ a {
         transform-origin: center;
         animation: quickFlare 2.2s ease-out forwards;
     }
+
+@keyframes bgDrift {
+    0% {
+        background-position: 50% 50%;
+    }
+
+    25% {
+        background-position: 52% 48%;
+    }
+
+    50% {
+        background-position: 48% 52%;
+    }
+
+    75% {
+        background-position: 51% 49%;
+    }
+
+    100% {
+        background-position: 50% 50%;
+    }
+}
+
+@keyframes bgZoom {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.05);
+    }
+}
+
 
 @keyframes quickFlare {
     0% {
@@ -196,7 +236,6 @@ a {
         opacity: 0;
     }
 }
-
 
 /* Dark overlay on top of moving light */
 .hero-overlay {
@@ -265,7 +304,6 @@ a {
         filter: drop-shadow(0 0 14px rgba(255,103,0,0.5));
     }
 }
-
 
 
 /* 🔥 breathing halo after powering up */
@@ -429,75 +467,157 @@ a {
 /* =========================
    PROJECTS SECTION
 ========================= */
+/* === PROJECTS SECTION === */
 .projects {
     width: 100vw;
-    min-height: 100vh; /* fill the screen */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 80px 0;
-    background: #0f0f0f;
+    padding: 100px 0 120px;
+    background: radial-gradient(circle at 30% 30%, #121212 0%, #0a0a0a 80%);
+    position: relative;
+    overflow: hidden;
 }
 
-    .projects h2 {
-        font-size: 2rem;
-        margin-bottom: 40px;
-        border-bottom: 2px solid #FF6700;
-        display: inline-block;
-        padding-bottom: 5px;
+    /* subtle orange ambient glow in background */
+    .projects::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient( circle at 50% 40%, rgba(255, 103, 0, 0.12), transparent 70% );
+        filter: blur(100px);
+        z-index: 0;
     }
 
+    /* --- Section Title --- */
+    .projects h2 {
+        font-size: 2.3rem;
+        margin-bottom: 50px;
+        color: #ff6700;
+        font-weight: 700;
+        border: none;
+        position: relative;
+        z-index: 2;
+    }
+
+        .projects h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: #ff6700;
+            border-radius: 2px;
+        }
+
+/* --- Project Card --- */
 .project {
-    background: #1a1a1a;
-    border-radius: 12px;
+    background: linear-gradient(to bottom, #141414 0%, #0a0a0a 70%, #000 100%);
+    border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-    width: 85%;
-    max-width: 1200px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    width: 95%; /* wider across the screen */
+    max-width: 1600px; /* almost full desktop width */
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+    z-index: 2;
 }
 
     .project:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(255, 103, 0, 0.25);
     }
 
+    /* --- Banner Image --- */
     .project img {
         width: 100%;
-        height: 60vh;
+        height: 40vh; /* shorter, banner-like */
         object-fit: cover;
-        border-bottom: 2px solid #FF6700;
+        border-bottom: 2px solid #ff6700;
+        transition: transform 0.6s ease;
     }
 
+    .project:hover img {
+        transform: scale(1.02); /* subtle movement, no warp */
+    }
+
+/* --- Info below --- */
 .project-info {
-    padding: 30px;
+    padding: 35px 50px;
     text-align: left;
+    color: #ccc;
+    background: #111; /* clean separation from image */
 }
 
     .project-info h3 {
-        font-size: 1.6rem;
-        color: #FF6700;
+        font-size: 1.9rem;
+        color: #ff6700;
+        margin-bottom: 0.8rem;
     }
 
     .project-info p {
-        font-size: 1rem;
+        font-size: 1.1rem;
         margin: 15px 0 25px;
+        color: #bbb;
+        line-height: 1.6;
     }
 
     .project-info .btn {
-        background: #959595;
+        background: #ff6700;
         color: #fff;
-        padding: 10px 20px;
+        padding: 10px 24px;
         border-radius: 6px;
         font-weight: 600;
-        transition: background 0.25s ease;
+        transition: all 0.25s ease;
+        text-decoration: none;
     }
 
         .project-info .btn:hover {
-            background: #FF6700;
+            background: #ffa44f;
+            box-shadow: 0 0 15px rgba(255, 103, 0, 0.6);
         }
+
+/* --- Reveal on Scroll --- */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease-out;
+}
+
+    [data-reveal].visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+/* --- Responsive Tweaks --- */
+@media (max-width: 768px) {
+    .projects {
+        padding: 70px 0;
+    }
+
+    .project {
+        width: 95%;
+    }
+
+        .project img {
+            height: 30vh; /* shorter on phones */
+        }
+
+    .project-info {
+        padding: 25px 20px;
+        text-align: center;
+    }
+
+        .project-info h3,
+        .project-info p {
+            text-align: center;
+        }
+}
 
 /* =========================
    ABOUT SECTION
