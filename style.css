@@ -356,16 +356,14 @@ a {
 @media (max-width: 768px) {
     .hero {
         min-height: 100dvh; /* actual visible mobile height */
-        width: 100%;
-        box-sizing: border-box;
+         width: 100%; 
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
         text-align: center;
         padding: 80px 20px 40px; /* controlled spacing top/bottom */
-        overflow-x: hidden; /* ✅ block invisible right overflow */
-        overflow-y: visible; /* allow vertical scrolling if needed */
+        overflow: visible; /* allow breathing room for long text */
     }
 
     .hero-logo {
@@ -571,4 +569,3 @@ footer {
         text-align: center;
     }
 }
-
