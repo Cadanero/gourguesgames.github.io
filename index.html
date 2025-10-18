@@ -25,6 +25,7 @@
     <!-- 🧱 Main Content -->
     <main>
         <section id="home" class="hero">
+            <div class="hero-flare"></div>
             <div class="hero-overlay"></div>
 
             <div class="hero-content">
@@ -43,11 +44,11 @@
             </div>
         </section>
 
-        <section id="projects" class="projects" data-reveal>
+        <section id="projects" class="projects">
             <h2 data-reveal>Featured Project</h2>
 
             <div class="project" data-reveal>
-                <img src="content/HeaderCapsule.png" alt="RoundZ Screenshot" data-reveal>
+                <img src="content/Wallpaper.png" alt="RoundZ Screenshot" data-reveal>
                 <div class="project-info" data-reveal>
                     <h3>RoundZ</h3>
                     <p>
@@ -56,120 +57,127 @@
                         perk systems, and easter eggs.
                     </p>
                     <a href="https://store.steampowered.com/app/3282690/RoundZ/" target="_blank" class="btn">View on Steam</a>
+
+                    <div class="tech-corner">
+                        <img src="content/uelogo.png" alt="Unreal Engine">
+                        <!-- <img src="content/steam.png" alt="Steam">
+                        <img src="content/solo.png" alt="Solo Dev"> -->
+                        <span>2025</span>
+                    </div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
 
-        <section id="about" class="about">
-            <h2>About Me</h2>
-            <p>
-                Hey, I’m Hugo Gourgues — the solo developer behind GG Interactive.
-                I build games that blend storytelling, chaos, and creativity.
-                From one-man prototypes to full releases like <strong>RoundZ</strong>, every project is made with passion (and way too much caffeine).
-            </p>
-        </section>
+            <section id="about" class="about">
+                <h2>About Me</h2>
+                <p>
+                    Hey, I’m Hugo Gourgues — the solo developer behind GG Interactive.
+                    I build games that blend storytelling, chaos, and creativity.
+                    From one-man prototypes to full releases like <strong>RoundZ</strong>, every project is made with passion (and way too much caffeine).
+                </p>
+            </section>
 
-        <section id="contact" class="contact">
-            <h2>Contact</h2>
-            <p>
-                Interested in collaborating or covering my games?
-                Reach out below or follow me on social media:
-            </p>
-            <div class="socials">
-                <a href="mailto:ggamesinteractive@gmail.com">📧 Email</a>
-                <a href="https://twitter.com/" target="_blank">🐦 Twitter</a>
-                <a href="https://store.steampowered.com/developer/GGInteractive" target="_blank">🕹 Steam Page</a>
-            </div>
-        </section>
+            <section id="contact" class="contact">
+                <h2>Contact</h2>
+                <p>
+                    Interested in collaborating or covering my games?
+                    Reach out below or follow me on social media:
+                </p>
+                <div class="socials">
+                    <a href="mailto:ggamesinteractive@gmail.com">📧 Email</a>
+                    <a href="https://twitter.com/" target="_blank">🐦 Twitter</a>
+                    <a href="https://store.steampowered.com/developer/GGInteractive" target="_blank">🕹 Steam Page</a>
+                </div>
+            </section>
 
-        <footer>
-            <p>© 2025 GG Interactive. All rights reserved.</p>
-        </footer>
+            <footer>
+                <p>© 2025 GG Interactive. All rights reserved.</p>
+            </footer>
 
-    </main>
+        </main>
 
-    <script>
-        const sections = document.querySelectorAll("section[id]");
-        const navLinks = document.querySelectorAll(".menu a");
+        <script>
+            const sections = document.querySelectorAll("section[id]");
+            const navLinks = document.querySelectorAll(".menu a");
 
-        // instant highlight on click (teleport underline)
-        navLinks.forEach(link => {
-            link.addEventListener("click", () => {
-                navLinks.forEach(l => {
-                    l.classList.remove("active");
-                    l.style.transition = "none";
+            // instant highlight on click (teleport underline)
+            navLinks.forEach(link => {
+                link.addEventListener("click", () => {
+                    navLinks.forEach(l => {
+                        l.classList.remove("active");
+                        l.style.transition = "none";
+                    });
+                    link.classList.add("active");
+                    setTimeout(() => {
+                        navLinks.forEach(l => (l.style.transition = ""));
+                    }, 50);
                 });
-                link.classList.add("active");
-                setTimeout(() => {
-                    navLinks.forEach(l => (l.style.transition = ""));
-                }, 50);
             });
-        });
 
-        // live update on scroll (debounced)
-        let scrollTimeout;
-        window.addEventListener("scroll", () => {
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-                let current = "";
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 160;
-                    const sectionHeight = section.offsetHeight;
-                    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                        current = section.getAttribute("id");
-                    }
-                });
+            // live update on scroll (debounced)
+            let scrollTimeout;
+            window.addEventListener("scroll", () => {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    let current = "";
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop - 160;
+                        const sectionHeight = section.offsetHeight;
+                        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                            current = section.getAttribute("id");
+                        }
+                    });
 
-                navLinks.forEach(link => {
-                    link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
-                });
-            }, 100);
-        });
-        // Force absolute top scroll for 'Home'
-        document.querySelector('a[href="#home"]').addEventListener("click", e => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-    </script>
-
-    <script>
-        const hero = document.querySelector('.hero');
-        const logo = document.querySelector('.hero-logo');
-
-        if (hero && logo) {
-            const heroRect = hero.getBoundingClientRect();
-            const logoRect = logo.getBoundingClientRect();
-
-            // 🎯 logo center relative to hero
-            const targetX =
-                logoRect.left + logoRect.width / 2 - (heroRect.left + heroRect.width / 2);
-            const targetY =
-                logoRect.top + logoRect.height / 2 - (heroRect.top + heroRect.height / 2);
-
-            // 🎲 random start from hero border
-            const angle = Math.random() * Math.PI * 2;
-            const radius = Math.max(heroRect.width, heroRect.height) * 0.6; // just outside edges
-            const startX = Math.cos(angle) * radius;
-            const startY = Math.sin(angle) * radius;
-
-            hero.style.setProperty("--start-x", `${startX}px`);
-            hero.style.setProperty("--start-y", `${startY}px`);
-            hero.style.setProperty("--target-x", `${targetX}px`);
-            hero.style.setProperty("--target-y", `${targetY}px`);
-        }
-    </script>
-    
-    <script>
-        //Pop Up Project content
-        const reveals = document.querySelectorAll("[data-reveal]");
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add("visible");
+                    navLinks.forEach(link => {
+                        link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
+                    });
+                }, 100);
             });
-        });
-        reveals.forEach(el => observer.observe(el));
-    </script>
+            // Force absolute top scroll for 'Home'
+            document.querySelector('a[href="#home"]').addEventListener("click", e => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        </script>
 
-</body>
-</html>
+        <script>
+            const hero = document.querySelector('.hero');
+            const logo = document.querySelector('.hero-logo');
+
+            if (hero && logo) {
+                const heroRect = hero.getBoundingClientRect();
+                const logoRect = logo.getBoundingClientRect();
+
+                // 🎯 logo center relative to hero
+                const targetX =
+                    logoRect.left + logoRect.width / 2 - (heroRect.left + heroRect.width / 2);
+                const targetY =
+                    logoRect.top + logoRect.height / 2 - (heroRect.top + heroRect.height / 2);
+
+                // 🎲 random start from hero border
+                const angle = Math.random() * Math.PI * 2;
+                const radius = Math.max(heroRect.width, heroRect.height) * 0.6; // just outside edges
+                const startX = Math.cos(angle) * radius;
+                const startY = Math.sin(angle) * radius;
+
+                hero.style.setProperty("--start-x", `${startX}px`);
+                hero.style.setProperty("--start-y", `${startY}px`);
+                hero.style.setProperty("--target-x", `${targetX}px`);
+                hero.style.setProperty("--target-y", `${targetY}px`);
+            }
+        </script>
+
+        <script>
+            //Pop Up Project content
+            const reveals = document.querySelectorAll("[data-reveal]");
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add("visible");
+                });
+            });
+            reveals.forEach(el => observer.observe(el));
+        </script>
+
+    </body>
+    </html>
