@@ -715,7 +715,7 @@ a {
     }
 
         .project img {
-            height: 30vh; /* shorter on phones */
+            height: 30vh; /* shorter banner */
         }
 
     .project-info {
@@ -728,45 +728,56 @@ a {
             text-align: center;
         }
 
+    /* --- Tech corner repositioned --- */
     .tech-corner {
-        bottom: 10px;
-        right: 10px;
+        position: relative;
+        bottom: auto;
+        right: auto;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        opacity: 0.85;
+    }
+
+        .tech-corner img {
+            width: 22px;
+            height: 22px;
+            filter: brightness(1.15);
+        }
+
+        .tech-corner span {
+            font-size: 0.8rem;
+            color: #b5b5b5;
+        }
+}
+
+/* --- Tiny phones (≤480px) --- */
+@media (max-width: 480px) {
+    .project-info {
+        padding: 20px 15px;
+    }
+
+        .project-info p {
+            font-size: 1rem;
+        }
+
+    .tech-corner {
+        margin-top: 16px;
         gap: 8px;
-        opacity: 0.8;
     }
 
         .tech-corner img {
             width: 20px;
             height: 20px;
-            filter: brightness(1.1);
         }
 
         .tech-corner span {
             font-size: 0.75rem;
-            color: #bbb;
         }
-    @media (max-width: 480px) {
-        .tech-corner {
-            position: relative;
-            bottom: auto;
-            right: auto;
-            margin-top: 15px;
-            justify-content: center;
-            opacity: 0.8;
-        }
-
-            .tech-corner img {
-                width: 20px;
-                height: 20px;
-                filter: brightness(1.2);
-            }
-
-            .tech-corner span {
-                font-size: 0.75rem;
-                color: #bbb;
-            }
-    }
 }
+
 
 /* =========================
    ABOUT SECTION
