@@ -793,6 +793,8 @@ footer {
    RESPONSIVE
 ========================= */
 @media (max-width: 768px) {
+
+    /* === PROJECTS SECTION === */
     .projects {
         padding: 70px 0;
     }
@@ -843,5 +845,6 @@ footer {
             top: 1px;
             right: 2px;
             z-index: 3; /* ensures it shows above anything */
+            background: red;
         }
 }
