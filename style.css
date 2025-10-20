@@ -727,6 +727,24 @@ a {
         .project-info p {
             text-align: center;
         }
+
+    .tech-corner {
+        bottom: 10px;
+        right: 10px;
+        gap: 8px;
+        opacity: 0.8;
+    }
+
+        .tech-corner img {
+            width: 20px;
+            height: 20px;
+            filter: brightness(1.1);
+        }
+
+        .tech-corner span {
+            font-size: 0.75rem;
+            color: #bbb;
+        }
 }
 
 /* =========================
