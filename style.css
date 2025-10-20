@@ -125,19 +125,6 @@ a {
     color: #d6d6d6;
 }
 
-/* --- Responsive --- */
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    gap: 10px;
-    padding: 12px 24px;
-  }
-  .logo img {
-    height: 36px;
-  }
-  
-}
-
 /* =========================
    HERO SECTION
 ========================= */
@@ -632,31 +619,98 @@ a {
     }
 
 
-/* =========================
-   ABOUT SECTION
-========================= */
+/* ===== ABOUT SECTION ===== */
 .about {
     width: 100vw;
-    min-height: 90vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: #141414;
-    padding: 80px 20px;
-    border-radius: 0;
+    padding: 100px 0 120px;
+    background: #000; /* same black as projects tail */
+    position: relative;
+    overflow: hidden;
 }
 
     .about h2 {
-        color: #FF6700;
-        margin-bottom: 30px;
+        font-size: 2.3rem;
+        margin-bottom: 40px;
+        color: #ff6700;
+        font-weight: 700;
+        position: relative;
+        z-index: 2;
+        text-align: center;
     }
 
-    .about p {
-        font-size: 1.05rem;
-        max-width: 800px;
-        text-align: center;
-        color: #ccc;
+        .about h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: #ff6700;
+            border-radius: 2px;
+        }
+
+.about-container {
+    width: 95%;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr; /* text left, skills right */
+    gap: 36px;
+    background: #0f0f0f;
+    border: 1px solid #1e1e1e;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    padding: 38px 42px;
+}
+
+.about-text p {
+    color: #cfcfcf;
+    font-size: 1.06rem;
+    line-height: 1.7;
+    margin: 0 0 16px 0;
+}
+
+    .about-text p:last-child {
+        margin-bottom: 0;
+    }
+
+.about-skills h3 {
+    color: #ff6700;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 6px 0 14px 0;
+    letter-spacing: 0.3px;
+}
+
+.skill-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 10px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 8px 12px;
+    border: 1px solid rgba(255,103,0,0.6);
+    border-radius: 999px;
+    color: #ddd;
+    font-size: 0.92rem;
+    background: linear-gradient(180deg, rgba(255,103,0,0.08), rgba(255,103,0,0.04));
+    box-shadow: 0 0 16px rgba(255,103,0,0.08);
+    backdrop-filter: blur(2px);
+    white-space: nowrap;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+    .badge:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 18px rgba(255,103,0,0.18);
+        border-color: rgba(255,150,50,0.85);
     }
 
 /* =========================
@@ -721,6 +775,16 @@ footer {
 ========================= */
 @media (max-width: 768px) {
 
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px 24px;
+    }
+
+    .logo img {
+        height: 36px;
+    }
+  
     /* ===== HERO – Refined Cinematic Version ===== */
     .hero {
         min-height: 100dvh; /* actual visible mobile height */
@@ -837,5 +901,36 @@ footer {
         width: fit-content; /* adjusts to button text width */
         padding: 12px 26px;
     }
+
+        .about {
+            padding: 70px 0 90px;
+        }
+
+        .about-container {
+            grid-template-columns: 1fr; /* stack */
+            gap: 22px;
+            padding: 26px 20px;
+            width: 92%;
+        }
+
+        .about h2 {
+            margin-bottom: 28px;
+        }
+
+        .about-text p {
+            font-size: 1rem;
+            line-height: 1.65;
+        }
+
+        .skill-badges {
+            gap: 8px;
+        }
+
+        .badge {
+            font-size: 0.9rem;
+            padding: 7px 11px;
+        }
+   
+
 }
 
