@@ -830,7 +830,7 @@ footer {
         right: 22px !important;
         display: flex !important;
         align-items: center !important;
-        gap: 9px !important;
+        gap: 6px !important;
         opacity: 0.9 !important;
         z-index: 10 !important;
         transform: translateY(-50%) !important; /* aligns vertically with title line */
@@ -847,6 +847,7 @@ footer {
             color: #d4d4d4 !important;
             font-size: 0.9rem !important;
             line-height: 1;
+            top: 1px;
         }
 
     /* 🔹 Description text below */
