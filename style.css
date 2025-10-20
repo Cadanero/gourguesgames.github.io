@@ -704,70 +704,6 @@ a {
         transform: translateY(0);
     }
 
-/* --- Responsive Tweaks --- */
-@media (max-width: 768px) {
-    @media (max-width: 768px) {
-        .projects {
-            padding: 70px 0;
-        }
-
-        .project {
-            width: 95%;
-        }
-
-            .project img {
-                height: 30vh;
-            }
-
-        /* ✅ Project info spacing */
-        .project-info {
-            padding: 25px 20px;
-            text-align: left;
-            position: relative;
-        }
-
-            /* 🧱 RoundZ title aligned left */
-            .project-info h3 {
-                text-align: left;
-                margin-bottom: 0.5rem;
-            }
-
-        /* ⚙️ Tech corner to top-right, under image */
-        .tech-corner {
-            position: absolute;
-            top: -35px; /* pulls it up under the banner */
-            right: 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            opacity: 0.85;
-            transform: translateY(-5px);
-        }
-
-            .tech-corner img {
-                width: 22px;
-                height: 22px;
-                filter: brightness(1.2);
-            }
-
-            .tech-corner span {
-                font-size: 0.8rem;
-                color: #b5b5b5;
-            }
-
-        /* 📜 Paragraph + button still centered */
-        .project-info p,
-        .project-info .btn {
-            text-align: center;
-            display: block;
-            margin: 0 auto;
-        }
-
-        .project-info .btn {
-            margin-top: 15px;
-        }
-    }
-
 
 /* =========================
    ABOUT SECTION
@@ -857,11 +793,52 @@ footer {
    RESPONSIVE
 ========================= */
 @media (max-width: 768px) {
-    .project img {
-        height: 40vh;
+    .projects {
+        padding: 70px 0;
     }
 
-    .project-info {
-        text-align: center;
+    .project {
+        width: 95%;
     }
+
+        .project img {
+            height: 30vh; /* shorter banner */
+        }
+
+    .project-info {
+        padding: 25px 20px;
+        text-align: center;
+        position: relative; /* ensures proper stacking */
+    }
+
+        .project-info h3,
+        .project-info p {
+            text-align: center;
+        }
+
+        .project-info .btn {
+            margin-bottom: 15px; /* create space before tech row */
+        }
+
+    /* ✅ tech corner FIX — stop absolute positioning on mobile */
+    .tech-corner {
+        position: static !important;
+        margin: 15px auto 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        opacity: 0.85;
+    }
+
+        .tech-corner img {
+            width: 22px;
+            height: 22px;
+            filter: brightness(1.2);
+        }
+
+        .tech-corner span {
+            font-size: 0.8rem;
+            color: #b5b5b5;
+        }
 }
