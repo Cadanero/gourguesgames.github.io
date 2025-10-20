@@ -808,8 +808,8 @@ footer {
         }
 
     .project-info {
-        position: static !important; /* release it from being the anchor */
-        padding: 18px 22px 30px;
+        position: relative !important;
+        padding: 25px 22px 35px !important;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -826,27 +826,26 @@ footer {
     /* 🔹 Tech icons + year aligned with title */
     .tech-corner {
         position: absolute !important;
-        top: calc(30vh + 10px) !important; /* just below the banner image */
-        right: 20px !important;
+        top: calc(13px + 1.8rem) !important; /* adjusts just above description text */
+        right: 22px !important;
         display: flex !important;
         align-items: center !important;
-        justify-content: flex-end;
         gap: 6px !important;
         opacity: 0.9 !important;
         z-index: 10 !important;
-        transform: none !important;
+        transform: translateY(-50%) !important; /* aligns vertically with title line */
     }
 
         .tech-corner img {
             width: 20px !important;
             height: 20px !important;
+            margin: 0;
         }
 
         .tech-corner span {
             color: #d4d4d4 !important;
             font-size: 0.9rem !important;
-            position: relative;
-            top: 1px;
+            line-height: 1;
         }
 
     /* 🔹 Description text below */
@@ -859,7 +858,11 @@ footer {
 
     /* 🔹 Button spacing */
     .project-info .btn {
-        margin-top: 4px !important;
+        display: block;
+        margin: 25px auto 0 auto !important; /* centers it horizontally */
+        text-align: center;
+        width: fit-content; /* adjusts to button text width */
+        padding: 12px 26px;
     }
 }
 
