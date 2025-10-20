@@ -756,31 +756,6 @@ a {
         }
 }
 
-/* --- Tiny phones (≤480px) --- */
-@media (max-width: 480px) {
-    .project-info {
-        padding: 20px 15px;
-    }
-
-        .project-info p {
-            font-size: 1rem;
-        }
-
-    .tech-corner {
-        margin-top: 10px;
-        gap: 8px;
-    }
-
-        .tech-corner img {
-            width: 20px;
-            height: 20px;
-        }
-
-        .tech-corner span {
-            font-size: 0.75rem;
-        }
-}
-
 
 /* =========================
    ABOUT SECTION
