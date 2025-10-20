@@ -745,6 +745,27 @@ a {
             font-size: 0.75rem;
             color: #bbb;
         }
+    @media (max-width: 480px) {
+        .tech-corner {
+            position: relative;
+            bottom: auto;
+            right: auto;
+            margin-top: 15px;
+            justify-content: center;
+            opacity: 0.8;
+        }
+
+            .tech-corner img {
+                width: 20px;
+                height: 20px;
+                filter: brightness(1.2);
+            }
+
+            .tech-corner span {
+                font-size: 0.75rem;
+                color: #bbb;
+            }
+    }
 }
 
 /* =========================
