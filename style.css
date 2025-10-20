@@ -838,7 +838,10 @@ footer {
         }
 
         .tech-corner span {
-            font-size: 0.8rem;
-            color: #b5b5b5;
+            color: #d3d3d3 !important; /* brighter and visible */
+            position: relative;
+            top: 1px;
+            right: 2px;
+            z-index: 3; /* ensures it shows above anything */
         }
 }
