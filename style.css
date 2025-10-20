@@ -830,7 +830,7 @@ footer {
         right: 22px !important;
         display: flex !important;
         align-items: center !important;
-        gap: 6px !important;
+        gap: 9px !important;
         opacity: 0.9 !important;
         z-index: 10 !important;
         transform: translateY(-50%) !important; /* aligns vertically with title line */
@@ -840,6 +840,7 @@ footer {
             width: 20px !important;
             height: 20px !important;
             margin: 0;
+            margin-top: 2px;
         }
 
         .tech-corner span {
