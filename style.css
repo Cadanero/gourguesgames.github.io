@@ -690,6 +690,7 @@ a {
     font-size: 0.9rem;
     color: #aaa;
     font-weight: 500;
+    margin-top: 1px;
 }
 
 /* --- Reveal on Scroll --- */
@@ -841,6 +842,7 @@ footer {
             height: 20px !important;
             margin: 0;
             margin-top: 2px;
+            scroll-margin-right: 2px;
         }
 
         .tech-corner span {
