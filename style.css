@@ -721,6 +721,7 @@ a {
     .project-info {
         padding: 25px 20px;
         text-align: center;
+        position: relative; /* ensures proper stacking */
     }
 
         .project-info h3,
@@ -728,12 +729,14 @@ a {
             text-align: center;
         }
 
-    /* --- Tech corner repositioned --- */
+        .project-info .btn {
+            margin-bottom: 15px; /* create space before tech row */
+        }
+
+    /* ✅ tech corner FIX — stop absolute positioning on mobile */
     .tech-corner {
-        position: relative;
-        bottom: auto;
-        right: auto;
-        margin-top: 20px;
+        position: static !important;
+        margin: 15px auto 0;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -744,7 +747,7 @@ a {
         .tech-corner img {
             width: 22px;
             height: 22px;
-            filter: brightness(1.15);
+            filter: brightness(1.2);
         }
 
         .tech-corner span {
@@ -764,7 +767,7 @@ a {
         }
 
     .tech-corner {
-        margin-top: 16px;
+        margin-top: 10px;
         gap: 8px;
     }
 
