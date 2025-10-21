@@ -631,6 +631,36 @@ a {
     background: #000; /* same black as projects tail */
     position: relative;
     overflow: hidden;
+    isolation: isolate; /* keeps the pseudo-elements inside */
+    z-index: 0; /* ensures before/after stay layered correctly */
+}
+
+    .about::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("content/bgcircuit.png") no-repeat center center;
+        background-size: cover;
+        animation: bgDrift 12s ease-in-out infinite, bgZoom 15s ease-in-out infinite alternate;
+        z-index: -3; /* stays behind fades */
+        transform-origin: center;
+    }
+
+    /* 🟠 Top & bottom fades stacked */
+    .about::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient( to top, rgba(10, 10, 10, 0) 0%, rgba(0, 0, 0, 0.8) 70%, #000 100% ), linear-gradient( to bottom, rgba(10, 10, 10, 0) 0%, rgba(0, 0, 0, 0.8) 70%, #000 100% );
+        background-repeat: no-repeat;
+        background-size: 100% 25%, 100% 25%; /* controls fade height */
+        background-position: top, bottom;
+        pointer-events: none;
+        z-index: -2;
+    }
+
+.about:hover::before {
+        transform: translateY(-5px);
 }
 
     .about h2 {
@@ -724,7 +754,7 @@ a {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: #0f0f0f;
+    background: #000;
     padding: 80px 20px;
 }
 
@@ -764,10 +794,11 @@ a {
 footer {
     text-align: center;
     padding: 25px;
-    border-top: 1px solid #222;
+    border-top: 1px solid #FF6700;
+    box-shadow: 0 0 8px rgba(255, 103, 0, 0.6), 0 0 16px rgba(255, 140, 26, 0.4), 0 0 32px rgba(255, 169, 77, 0.25);
     font-size: 0.9rem;
     color: #888;
-    background: #0d0d0d;
+    background: #000;
 }
 
 /* =========================
@@ -795,6 +826,7 @@ footer {
         text-align: center;
         padding: 80px 20px 40px; /* controlled spacing top/bottom */
         overflow: visible; /* allow breathing room for long text */
+        margin-top: 65px;
     }
 
     .hero-logo {
@@ -874,7 +906,7 @@ footer {
             width: 20px !important;
             height: 20px !important;
             margin: 0;
-            margin-top: 2px;
+            margin-bottom: 3px;
             scroll-margin-right: 2px;
         }
 

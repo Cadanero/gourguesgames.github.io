@@ -3,10 +3,38 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>GG Interactive</title>
+    <meta name="title" content="GG Interactive" />
+    <meta name="description" content="Gourgues Games Interactive. Solo developer building the kind of games I'd love to play. Every title starts small, then evolves through passion." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ggamesinteractive.com/" />
+    <meta property="og:title" content="GG Interactive" />
+    <meta property="og:description" content="Solo developer building the kind of games I'd love to play. Every title starts small, then evolves through passion." />
+    <meta property="og:image" content="https://ggamesinteractive.com/content/GGLogo1.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://ggamesinteractive.com/" />
+    <meta property="twitter:title" content="GG Interactive" />
+    <meta property="twitter:description" content="Solo developer building the kind of games I'd love to play. Every title starts small, then evolves through passion." />
+    <meta property="twitter:image" content="https://ggamesinteractive.com/content/GGLogo1.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="content/GGLogo1.png" />
+    <link rel="shortcut icon" href="content/GGLogo1.png" />
+
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 </head>
+
 <body>
     <!-- 🔝 Top Navigation Bar -->
     <header class="navbar">
@@ -45,7 +73,7 @@
 
             <div class="project" data-reveal>
                 <img src="content/Wallpaper.png" alt="RoundZ Screenshot" data-reveal>
-                <div class="project-info" data-reveal>
+                <div class="project-info">
                     <h3>RoundZ</h3>
                     <p>
                         Solo-developed round-based zombie survival game where each round becomes progressively harder
@@ -57,7 +85,7 @@
                     <div class="tech-corner">
                         <img src="content/UnrealLogo.png" alt="UE Logo">
                         <!-- <img src="content/steam.png" alt="Steam">
-                    <img src="content/solo.png" alt="Solo Dev"> -->
+                        <img src="content/solo.png" alt="Solo Dev"> -->
                         <span>2025</span>
                     </div>
                 </div>
@@ -128,87 +156,97 @@
 
     </main>
 
-        <script>
-            const sections = document.querySelectorAll("section[id]");
-            const navLinks = document.querySelectorAll(".menu a");
+    <script>
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll(".menu a");
 
-            // instant highlight on click (teleport underline)
-            navLinks.forEach(link => {
-                link.addEventListener("click", () => {
-                    navLinks.forEach(l => {
-                        l.classList.remove("active");
-                        l.style.transition = "none";
-                    });
-                    link.classList.add("active");
-                    setTimeout(() => {
-                        navLinks.forEach(l => (l.style.transition = ""));
-                    }, 50);
+        // instant highlight on click (teleport underline)
+        navLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                navLinks.forEach(l => {
+                    l.classList.remove("active");
+                    l.style.transition = "none";
                 });
+                link.classList.add("active");
+                setTimeout(() => {
+                    navLinks.forEach(l => (l.style.transition = ""));
+                }, 50);
             });
+        });
 
-            // live update on scroll (debounced)
-            let scrollTimeout;
-            window.addEventListener("scroll", () => {
-                clearTimeout(scrollTimeout);
-                scrollTimeout = setTimeout(() => {
-                    let current = "";
-                    sections.forEach(section => {
-                        const sectionTop = section.offsetTop - 160;
-                        const sectionHeight = section.offsetHeight;
-                        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                            current = section.getAttribute("id");
-                        }
-                    });
-
-                    navLinks.forEach(link => {
-                        link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
-                    });
-                }, 100);
-            });
-            // Force absolute top scroll for 'Home'
-            document.querySelector('a[href="#home"]').addEventListener("click", e => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: "smooth" });
-            });
-        </script>
-
-        <script>
-            const hero = document.querySelector('.hero');
-            const logo = document.querySelector('.hero-logo');
-
-            if (hero && logo) {
-                const heroRect = hero.getBoundingClientRect();
-                const logoRect = logo.getBoundingClientRect();
-
-                // 🎯 logo center relative to hero
-                const targetX =
-                    logoRect.left + logoRect.width / 2 - (heroRect.left + heroRect.width / 2);
-                const targetY =
-                    logoRect.top + logoRect.height / 2 - (heroRect.top + heroRect.height / 2);
-
-                // 🎲 random start from hero border
-                const angle = Math.random() * Math.PI * 2;
-                const radius = Math.max(heroRect.width, heroRect.height) * 0.6; // just outside edges
-                const startX = Math.cos(angle) * radius;
-                const startY = Math.sin(angle) * radius;
-
-                hero.style.setProperty("--start-x", `${startX}px`);
-                hero.style.setProperty("--start-y", `${startY}px`);
-                hero.style.setProperty("--target-x", `${targetX}px`);
-                hero.style.setProperty("--target-y", `${targetY}px`);
-            }
-        </script>
-
-        <script>
-            //Pop Up Project content
-            const reveals = document.querySelectorAll("[data-reveal]");
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) entry.target.classList.add("visible");
+        // live update on scroll (debounced)
+        let scrollTimeout;
+        window.addEventListener("scroll", () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                let current = "";
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 160;
+                    const sectionHeight = section.offsetHeight;
+                    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                        current = section.getAttribute("id");
+                    }
                 });
-            });
-            reveals.forEach(el => observer.observe(el));
-        </script>
 
-    </body>
-    </html>
+                navLinks.forEach(link => {
+                    link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
+                });
+            }, 100);
+        });
+        // Force absolute top scroll for 'Home'
+        document.querySelector('a[href="#home"]').addEventListener("click", e => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    </script>
+
+    <script>
+        const hero = document.querySelector('.hero');
+        const logo = document.querySelector('.hero-logo');
+
+        if (hero && logo) {
+            const heroRect = hero.getBoundingClientRect();
+            const logoRect = logo.getBoundingClientRect();
+
+            // 🎯 logo center relative to hero
+            const targetX =
+                logoRect.left + logoRect.width / 2 - (heroRect.left + heroRect.width / 2);
+            const targetY =
+                logoRect.top + logoRect.height / 2 - (heroRect.top + heroRect.height / 2);
+
+            // 🎲 random start from hero border
+            const angle = Math.random() * Math.PI * 2;
+            const radius = Math.max(heroRect.width, heroRect.height) * 0.6; // just outside edges
+            const startX = Math.cos(angle) * radius;
+            const startY = Math.sin(angle) * radius;
+
+            hero.style.setProperty("--start-x", `${startX}px`);
+            hero.style.setProperty("--start-y", `${startY}px`);
+            hero.style.setProperty("--target-x", `${targetX}px`);
+            hero.style.setProperty("--target-y", `${targetY}px`);
+        }
+    </script>
+
+    <script>
+        //Pop Up Project content
+        const reveals = document.querySelectorAll("[data-reveal]");
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add("visible");
+            });
+        });
+        reveals.forEach(el => observer.observe(el));
+    </script>
+
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "GG Interactive",
+          "url": "https://ggamesinteractive.com/",
+          "logo": "https://ggamesinteractive.com/content/GGLogo1.png"
+        }
+    </script>
+
+</body>
+</html>
