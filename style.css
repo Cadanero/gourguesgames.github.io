@@ -620,127 +620,185 @@ a {
 
 
 /* ===== ABOUT SECTION ===== */
+/* === ABOUT – Cinematic Fade From Black === */
 .about {
+    position: relative;
     width: 100vw;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    padding: 100px 0 120px;
-    background: #000; /* same black as projects tail */
-    position: relative;
+    justify-content: center;
+    background: url("content/banner.png") no-repeat center center;
+    background-size: cover;
+    padding: 180px 0;
     overflow: hidden;
-    isolation: isolate; /* keeps the pseudo-elements inside */
-    z-index: 0; /* ensures before/after stay layered correctly */
 }
 
-    .about::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: url("content/bgcircuit.png") no-repeat center center;
-        background-size: cover;
-        animation: bgDrift 12s ease-in-out infinite, bgZoom 15s ease-in-out infinite alternate;
-        z-index: -3; /* stays behind fades */
-        transform-origin: center;
-    }
 
-    /* 🟠 Top & bottom fades stacked */
+    /* 🔥 LAYER 2 — cinematic fade top & bottom  */
     .about::after {
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient( to top, rgba(10, 10, 10, 0) 0%, rgba(0, 0, 0, 0.8) 70%, #000 100% ), linear-gradient( to bottom, rgba(10, 10, 10, 0) 0%, rgba(0, 0, 0, 0.8) 70%, #000 100% );
-        background-repeat: no-repeat;
-        background-size: 100% 25%, 100% 25%; /* controls fade height */
-        background-position: top, bottom;
         pointer-events: none;
-        z-index: -2;
+        background: linear-gradient( to bottom, rgba(0, 0, 0, 1) 0%, /* solid black top */
+        rgba(0, 0, 0, 0) 25%, /* fade to clear */
+        rgba(0, 0, 0, 0) 75%, /* clear middle */
+        rgba(0, 0, 0, 1) 100% /* solid black bottom */
+        );
+        z-index: 1;
     }
 
-.about:hover::before {
-        transform: translateY(-5px);
+@keyframes glowFloat {
+    0% {
+        opacity: 0.25;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0.5;
+        transform: scale(1.05);
+    }
 }
 
-    .about h2 {
-        font-size: 2.3rem;
-        margin-bottom: 40px;
-        color: #ff6700;
-        font-weight: 700;
-        position: relative;
-        z-index: 2;
-        text-align: center;
-    }
 
-        .about h2::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 3px;
-            background: #ff6700;
-            border-radius: 2px;
-        }
-
+/*  LAYER 1 — dark blur overlay */
+.about::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.80);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+    z-index: 0;
+}
+.about h2,
 .about-container {
-    width: 95%;
-    max-width: 1200px;
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr; /* text left, skills right */
-    gap: 36px;
-    background: #0f0f0f;
-    border: 1px solid #1e1e1e;
-    border-radius: 14px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-    padding: 38px 42px;
+    position: relative;
+    z-index: 2;
+}
+/* === GLITCH ANIMATIONS – Scoped to About === */
+#about h2.visible,
+#about p.visible,
+#about h3.visible,
+#about .badge.visible {
+    opacity: 1;
+    transform: translateY(0);
+    animation: glitchVisible 1.4s ease-out forwards;
 }
 
-.about-text p {
-    color: #cfcfcf;
-    font-size: 1.06rem;
-    line-height: 1.7;
-    margin: 0 0 16px 0;
-}
-
-    .about-text p:last-child {
-        margin-bottom: 0;
+@keyframes glitchVisible {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+        color: #ff3300;
+        text-shadow: 2px 2px #00ffff, -2px -2px #ff6700;
     }
 
-.about-skills h3 {
-    color: #ff6700;
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin: 6px 0 14px 0;
-    letter-spacing: 0.3px;
+    10% {
+        opacity: 1;
+        transform: translateY(2px);
+        text-shadow: -2px 0 #ff3300, 2px 0 #00ffff;
+    }
+
+    20% {
+        transform: translateY(-2px);
+        text-shadow: 3px 3px #ff6700, -3px -3px #00ffff;
+    }
+
+    30% {
+        transform: translateY(1px);
+        text-shadow: none;
+    }
+
+    40% {
+        color: #ffffff;
+        filter: brightness(1.8);
+    }
+
+    60% {
+        color: #ff6700;
+        text-shadow: 0 0 10px rgba(255,103,0,0.7);
+    }
+
+    100% {
+        opacity: 1;
+        transform: none;
+        text-shadow: none;
+        filter: none;
+        color: #e4e4e4;
+    }
 }
 
+/* === CONTENT === */
+.about-container {
+    position: relative;
+    z-index: 2; /* above fades */
+    width: 90%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 50px;
+}
+
+.about h2 {
+    font-size: 2.8rem;
+    color: #ff6700 !important;
+    margin-bottom: 70px;
+    text-shadow: 0 0 25px rgba(255,103,0,0.5);
+}
+.about h3 {
+    color: #ff6700 !important;
+}
+.about-text p {
+    color: #e4e4e4;
+    font-size: 1.15rem;
+    line-height: 1.9;
+    max-width: 850px;
+    margin-bottom: 25px;
+}
+
+.about-text strong {
+    color: #ff6700;
+    text-shadow: 0 0 10px rgba(255,103,0,0.4);
+}
 .skill-badges {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px 10px;
+    gap: 10px;
+    justify-content: center;
+    max-width: 850px;
 }
-
+/* 🟧 Compact tag-style badges */
 .badge {
-    display: inline-block;
-    padding: 8px 12px;
-    border: 1px solid rgba(255,103,0,0.6);
-    border-radius: 999px;
-    color: #ddd;
-    font-size: 0.92rem;
-    background: linear-gradient(180deg, rgba(255,103,0,0.08), rgba(255,103,0,0.04));
-    box-shadow: 0 0 16px rgba(255,103,0,0.08);
-    backdrop-filter: blur(2px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 14px; /* smaller size */
+    border: 1.5px solid #ff6700; /* thin orange border */
+    border-radius: 999px; /* full-rounded edges like tags */
+    color: #ff6700;
+    background: rgba(255, 103, 0, 0.08);
+    font-size: 0.85rem; /* smaller font */
+    font-weight: 500;
+    letter-spacing: 0.3px;
     white-space: nowrap;
-    transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    box-shadow: 0 0 10px rgba(255, 103, 0, 0.1);
+    transition: all 0.25s ease;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
 }
 
+    /* 🧡 Hover glow effect */
     .badge:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 0 18px rgba(255,103,0,0.18);
-        border-color: rgba(255,150,50,0.85);
+        color: #fff;
+        background: rgba(255, 103, 0, 0.15);
+        border-color: #ffa347;
+        box-shadow: 0 0 25px rgba(255, 150, 50, 0.45);
+        transform: translateY(-3px);
     }
 
 /* =========================
@@ -825,10 +883,11 @@ footer {
         align-items: center;
         text-align: center;
         padding: 80px 20px 40px; /* controlled spacing top/bottom */
-        overflow: visible; /* allow breathing room for long text */
+        overflow: visible; /* allow breathing room for long text */       
+    }
+    .hero-content {
         margin-top: 65px;
     }
-
     .hero-logo {
         width: 120px;
         max-width: 35vw;

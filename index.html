@@ -134,6 +134,8 @@
         </section>
 
         <section id="about" class="about">
+            <div class="parallax-bg"></div>
+
             <h2 data-reveal>About Me</h2>
 
             <div class="about-container" data-reveal>
@@ -178,6 +180,7 @@
         </section>
 
 
+
         <section id="contact" class="contact">
             <h2>Contact</h2>
             <p>
@@ -196,12 +199,11 @@
         </footer>
 
     </main>
-
     <script>
+        // === existing menu highlight script ===
         const sections = document.querySelectorAll("section[id]");
         const navLinks = document.querySelectorAll(".menu a");
 
-        // instant highlight on click (teleport underline)
         navLinks.forEach(link => {
             link.addEventListener("click", () => {
                 navLinks.forEach(l => {
@@ -215,7 +217,6 @@
             });
         });
 
-        // live update on scroll (debounced)
         let scrollTimeout;
         window.addEventListener("scroll", () => {
             clearTimeout(scrollTimeout);
@@ -234,12 +235,14 @@
                 });
             }, 100);
         });
-        // Force absolute top scroll for 'Home'
+
         document.querySelector('a[href="#home"]').addEventListener("click", e => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
+
     </script>
+
 
     <script>
         const hero = document.querySelector('.hero');
@@ -266,6 +269,26 @@
             hero.style.setProperty("--target-x", `${targetX}px`);
             hero.style.setProperty("--target-y", `${targetY}px`);
         }
+    </script>
+
+    <script>
+        //Gltich
+        document.addEventListener("DOMContentLoaded", () => {
+            const revealElements = document.querySelectorAll(
+                "#about h2, #about p, #about h3, #about .badge"
+            );
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observer.unobserve(entry.target); // Trigger once per element
+                    }
+                });
+            }, { threshold: 0.25 }); // Trigger when 25% visible
+
+            revealElements.forEach((el) => observer.observe(el));
+        });
     </script>
 
     <script>
