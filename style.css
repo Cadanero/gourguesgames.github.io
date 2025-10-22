@@ -977,7 +977,7 @@ footer {
         .project img {
             height: 30vh; /* shorter banner */
         }
-    .project-info h2 {
+    .project h2 {
         font-size: 1.6rem !important;
     }
     .project-info {
@@ -1052,6 +1052,7 @@ footer {
         .about h2 {
             font-size: 1.6rem;
             margin-bottom: 40px;
+            color: #ff6700 !important;
         }
 
     .about-container {
@@ -1069,6 +1070,7 @@ footer {
     .about h3 {
         font-size: 1.1rem;
         margin-bottom: 12px;
+        color: #ff6700 !important;
     }
 
     .skill-badges {
