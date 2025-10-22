@@ -101,9 +101,9 @@ a {
         width: 0;
         height: 2px;
         background: #ff6700;
-        transition: none;
+        transition: width 0.3s ease; /* enable smooth transition */
     }
-
+ 
     /* hover: only color (no underline) */
     .menu a:hover {
         color: #ff6700;
@@ -468,15 +468,15 @@ a {
 }
 
     /* --- Section Title --- */
-    .projects h2 {
-        font-size: 2.3rem;
-        margin-bottom: 50px;
-        color: #ff6700;
-        font-weight: 700;
-        border: none;
-        position: relative;
-        z-index: 2;
-    }
+.projects h2 {
+    font-size: 2.1rem;
+    margin-bottom: 50px;
+    color: #ff6700;
+    font-weight: 700;
+    border: none;
+    position: relative;
+    z-index: 2;
+}
 
         .projects h2::after {
             content: "";
@@ -668,7 +668,7 @@ a {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.80);
+    background: rgba(0, 0, 0, 0.90);
     backdrop-filter: blur(1px);
     -webkit-backdrop-filter: blur(1px);
     z-index: 0;
@@ -745,7 +745,7 @@ a {
 }
 
 .about h2 {
-    font-size: 2.8rem;
+    font-size: 2.1rem;
     color: #ff6700 !important;
     margin-bottom: 70px;
     text-shadow: 0 0 25px rgba(255,103,0,0.5);
@@ -805,46 +805,90 @@ a {
    CONTACT SECTION
 ========================= */
 .contact {
+    position: relative;
     width: 100vw;
-    min-height: 80vh;
+    min-height: 55vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-align: center;
-    background: #000;
-    padding: 80px 20px;
-}
-
-    .contact h2 {
-        color: #FF6700;
-        margin-bottom: 20px;
-    }
-
-    .contact p {
-        max-width: 600px;
-        margin-bottom: 30px;
-    }
-
-.socials {
-    display: flex;
     justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
+    background: #000;
+    color: #e4e4e4;
+    text-align: center;
+    padding: 120px 0;
 }
 
-    .socials a {
-        background: #1a1a1a;
-        padding: 12px 20px;
-        border-radius: 8px;
-        font-weight: 500;
-        transition: all 0.25s ease;
+    /* 🔶 Title – higher and stronger glow */
+    .contact h2 {
+        position: absolute; /* take it out of flex flow */
+        top: -13px; /* 👈 move up as high as you want */
+        left: 50%;
+        transform: translateX(-50%);
+        color: #ff6700;
+        font-size: 2.1rem;
+        text-shadow: 0 0 30px rgba(255, 103, 0, 0.55);
+        margin: 0; /* remove bottom margin spacing */
+        z-index: 5;
     }
 
-        .socials a:hover {
-            background: #FF6700;
-            color: #fff;
-        }
+
+/* ✍️ Subtitle */
+.contact-subtitle {
+    position: relative;
+    top: -115px; /* pushes it down from header */
+    color: #e4e4e4;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    text-shadow: 0 0 12px rgba(255, 103, 0, 0.3);
+    max-width: 750px;
+}
+/* 🌟 Icons layout – more horizontal space */
+.contact-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 130px; /* wider spacing between icons */
+    position: relative;
+    top: -30px; /* lift icons upward */
+    margin-bottom: 10px;
+}
+
+.contact-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #ff6700;
+    transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+    .contact-link img {
+        width: 70px;
+        height: 70px;
+        object-fit: contain;
+        filter: invert(51%) sepia(96%) saturate(1432%) hue-rotate(1deg) brightness(102%) contrast(102%) drop-shadow(0 0 12px rgba(255,103,0,0.45));
+        transition: transform 0.25s ease, filter 0.25s ease;
+    }
+
+    .contact-link span {
+        margin-top: 10px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #ff6700;
+        text-shadow: 0 0 15px rgba(255, 103, 0, 0.4);
+        transition: color 0.25s ease, text-shadow 0.25s ease;
+    }
+
+    /* ⚡ Hover glow effect */
+    .contact-link:hover img {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 20px rgba(255,150,50,0.8)) brightness(1.2) contrast(1.1) invert(51%) sepia(96%) saturate(1432%) hue-rotate(1deg);
+    }
+
+    .contact-link:hover span {
+        color: #fff;
+        text-shadow: 0 0 25px rgba(255, 150, 50, 0.8);
+    }
 
 /* =========================
    FOOTER
@@ -873,7 +917,7 @@ footer {
     .logo img {
         height: 36px;
     }
-  
+
     /* ===== HERO – Refined Cinematic Version ===== */
     .hero {
         min-height: 100dvh; /* actual visible mobile height */
@@ -883,11 +927,13 @@ footer {
         align-items: center;
         text-align: center;
         padding: 80px 20px 40px; /* controlled spacing top/bottom */
-        overflow: visible; /* allow breathing room for long text */       
+        overflow: visible; /* allow breathing room for long text */
     }
+
     .hero-content {
         margin-top: 65px;
     }
+
     .hero-logo {
         width: 120px;
         max-width: 35vw;
@@ -993,35 +1039,85 @@ footer {
         padding: 12px 26px;
     }
 
-        .about {
-            padding: 70px 0 90px;
-        }
+    /* === ABOUT SECTION === */
 
-        .about-container {
-            grid-template-columns: 1fr; /* stack */
-            gap: 22px;
-            padding: 26px 20px;
-            width: 92%;
-        }
+    .about {
+        padding: 120px 0;
+        background-attachment: scroll; /* fixes parallax jump on mobile */
+        background-position: center top;
+    }
 
         .about h2 {
-            margin-bottom: 28px;
+            font-size: 1.6rem;
+            margin-bottom: 40px;
         }
 
-        .about-text p {
-            font-size: 1rem;
-            line-height: 1.65;
+    .about-container {
+        width: 92%;
+        gap: 35px;
+    }
+
+    .about-text p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        max-width: 95%;
+    }
+
+    .about h3 {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+    }
+
+    .skill-badges {
+        gap: 6px;
+        justify-content: center;
+    }
+
+    .badge {
+        padding: 4px 10px;
+        font-size: 0.75rem;
+        border-width: 1px;
+        letter-spacing: 0.2px;
+    }
+
+    .contact {
+        padding: 100px 0;
+    }
+
+        /* 🔶 Title – scale + reposition */
+        .contact h2 {
+            font-size: 1.6rem;
+            top: 10px; /* slightly lower so it doesn’t clip top */
         }
 
-        .skill-badges {
-            gap: 8px;
-        }
+    /* ✍️ Subtitle – centered and closer to header */
+    .contact-subtitle {
+        top: -70px; /* adjusted to sit neatly below title */
+        font-size: 1rem;
+        line-height: 1.6;
+        padding: 0 20px;
+        max-width: 90%;
+    }
 
-        .badge {
-            font-size: 0.9rem;
-            padding: 7px 11px;
-        }
-   
+    /* 🌟 Icons – wrap and center cleanly */
+    .contact-icons {
+        gap: 60px; /* reduced horizontal space */
+        top: -10px; /* balanced lift */
+        flex-wrap: wrap; /* ensures wrapping on narrow screens */
+        margin-bottom: 0;
+    }
 
+    .contact-link img {
+        width: 55px;
+        height: 55px;
+    }
+
+    .contact-link span {
+        margin-top: 8px;
+        font-size: 0.9rem;
+    }
 }
+
+
 
