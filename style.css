@@ -629,7 +629,7 @@ a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: url("content/banner.png") no-repeat center center;
+    background: url("content/Banner.png") no-repeat center center;
     background-size: cover;
     padding: 180px 0;
     overflow: hidden;
