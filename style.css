@@ -977,7 +977,9 @@ footer {
         .project img {
             height: 30vh; /* shorter banner */
         }
-
+    .project-info h2 {
+        font-size: 1.6rem !important;
+    }
     .project-info {
         position: relative !important;
         padding: 25px 22px 35px !important;
@@ -1080,6 +1082,25 @@ footer {
         border-width: 1px;
         letter-spacing: 0.2px;
     }
+    /* 🚫 Disable glitch animation on mobile for smoother performance */
+    #about h2.visible,
+    #about p.visible,
+    #about h3.visible,
+    #about .badge.visible {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        text-shadow: none !important;
+        color: #e4e4e4 !important;
+    }
+
+    /* 🧡 Optional: simplify transition if you still want a slight fade-in */
+    #about h2,
+    #about p,
+    #about h3,
+    #about .badge {
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
 
     .contact {
         padding: 100px 0;
@@ -1093,7 +1114,7 @@ footer {
 
     /* ✍️ Subtitle – centered and closer to header */
     .contact-subtitle {
-        top: -70px; /* adjusted to sit neatly below title */
+        top: -40px; /* adjusted to sit neatly below title */
         font-size: 1rem;
         line-height: 1.6;
         padding: 0 20px;
@@ -1102,20 +1123,20 @@ footer {
 
     /* 🌟 Icons – wrap and center cleanly */
     .contact-icons {
-        gap: 60px; /* reduced horizontal space */
+        gap: 30px; /* reduced horizontal space */
         top: -10px; /* balanced lift */
         flex-wrap: wrap; /* ensures wrapping on narrow screens */
         margin-bottom: 0;
     }
 
     .contact-link img {
-        width: 55px;
-        height: 55px;
+        width: 35px;
+        height: 35px;
     }
 
     .contact-link span {
         margin-top: 8px;
-        font-size: 0.9rem;
+        font-size: 0.7rem;
     }
 }
 
