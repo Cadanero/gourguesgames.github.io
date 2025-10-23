@@ -1083,8 +1083,10 @@ footer {
         font-size: 0.75rem;
         border-width: 1px;
         letter-spacing: 0.2px;
-        color: #e4e4e4 !important;
     }
+        .badge.visible {
+            color: #e4e4e4 !important;
+        }
     /* 🚫 Disable glitch animation on mobile for smoother performance */
     #about h2.visible,
     #about p.visible,
