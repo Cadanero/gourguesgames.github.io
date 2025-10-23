@@ -977,7 +977,7 @@ footer {
         .project img {
             height: 30vh; /* shorter banner */
         }
-    .project h2 {
+    #projects h2 {
         font-size: 1.6rem !important;
     }
     .project-info {
@@ -1093,7 +1093,6 @@ footer {
         opacity: 1 !important;
         transform: translateY(0) !important;
         text-shadow: none !important;
-        color: #e4e4e4 !important;
     }
 
     /* 🧡 Optional: simplify transition if you still want a slight fade-in */
